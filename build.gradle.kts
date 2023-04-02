@@ -1,8 +1,9 @@
 plugins {
     id("java")
+    id("io.freefair.lombok") version "6.6.2"
 }
 
-group = "cc.ddev.instanceguard"
+group = "cc.ddev"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -10,10 +11,5 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
-}
-
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
+    implementation("org.slf4j:slf4j-api:2.0.6")
 }
