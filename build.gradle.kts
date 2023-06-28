@@ -47,10 +47,6 @@ publishing {
     }
     publications {
         register<MavenPublication>("gpr") {
-            groupId = "cc.ddev"
-            artifactId = "InstanceGuard"
-            version = "1.0.0"
-
             from(components["java"])
         }
     }
