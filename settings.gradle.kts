@@ -1,2 +1,2 @@
-rootProject.name = "InstanceGuard"
+rootProject.name = "instanceguard"
 
