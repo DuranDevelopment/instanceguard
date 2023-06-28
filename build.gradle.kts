@@ -2,6 +2,7 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     java
+    `maven-publish`
     id("com.github.johnrengelman.shadow") version ("7.1.0")
     id("io.freefair.lombok") version "6.6.2"
 }
@@ -30,6 +31,24 @@ tasks {
         }
 
         fun reloc(pkg: String) = relocate(pkg, "cc.ddev.shaded.$pkg")
+    }
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/durandevelopment/instanceguard")
+            credentials {
+                username = project.findProperty("gpr.user") as String? ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") as String? ?: System.getenv("TOKEN")
+            }
+        }
+    }
+    publications {
+        register<MavenPublication>("gpr") {
+            from(components["java"])
+        }
     }
 }
 
