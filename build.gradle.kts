@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
     implementation("org.slf4j:slf4j-api:2.0.6")
-    implementation("com.github.Minestom.Minestom:Minestom:-SNAPSHOT")
+    implementation("dev.hollowcube:minestom-ce:438338381e")
     compileOnly("junit:junit:4.13.2")
 }
 
@@ -47,6 +47,10 @@ publishing {
     }
     publications {
         register<MavenPublication>("gpr") {
+            groupId = "cc.ddev"
+            artifactId = "InstanceGuard"
+            version = "1.0.0"
+
             from(components["java"])
         }
     }
@@ -60,4 +64,8 @@ tasks {
     build {
         dependsOn(shadowJar)
     }
+}
+
+tasks.getByName<Test>("test") {
+    useJUnitPlatform()
 }
