@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
     implementation("org.slf4j:slf4j-api:2.0.6")
-    implementation("com.github.Minestom:Minestom:-SNAPSHOT")
+    implementation("com.github.Minestom.Minestom:Minestom:-SNAPSHOT")
     compileOnly("junit:junit:4.13.2")
 }
 

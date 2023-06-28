@@ -1,5 +1,6 @@
 package cc.ddev.instanceguard;
 
+import cc.ddev.instanceguard.logger.Log;
 import cc.ddev.instanceguard.objects.Region;
 import net.minestom.server.coordinate.Pos;
 
@@ -15,7 +16,7 @@ public class InstanceGuard {
 
 
     public static void main(String[] args) {
-
+        Log.getLogger().info("InstanceGuard initiated...");
     }
 
     public void getRegions(String worldName) {
