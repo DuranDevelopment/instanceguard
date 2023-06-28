@@ -13,6 +13,11 @@ public class InstanceGuard {
         regions = new HashMap<>();
     }
 
+
+    public static void main(String[] args) {
+
+    }
+
     public void getRegions(String worldName) {
         regions.get(worldName);
     }
