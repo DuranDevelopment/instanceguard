@@ -3,12 +3,18 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     java
     `maven-publish`
+    signing
     id("com.github.johnrengelman.shadow") version ("7.1.0")
     id("io.freefair.lombok") version "6.6.2"
 }
 
 group = "cc.ddev"
 version = "1.0-SNAPSHOT"
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
 
 repositories {
     mavenCentral()
@@ -18,7 +24,8 @@ repositories {
 dependencies {
     implementation("org.slf4j:slf4j-api:2.0.6")
     implementation("dev.hollowcube:minestom-ce:438338381e")
-    compileOnly("junit:junit:4.13.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 }
 
 tasks {
