@@ -1,4 +1,4 @@
-package cc.ddev.instanceguard.managers;
+package cc.ddev.instanceguard.data;
 
 import java.io.File;
 
