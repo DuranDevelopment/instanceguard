@@ -1,33 +1,15 @@
 package cc.ddev.instanceguard;
 
 import cc.ddev.instanceguard.logger.Log;
-import cc.ddev.instanceguard.objects.Region;
-import net.minestom.server.coordinate.Pos;
-
-import java.util.HashMap;
-import java.util.Map;
+import cc.ddev.instanceguard.managers.RegionManager;
 
 public class InstanceGuard {
-    private final Map<String, Region> regions;
-
-    public InstanceGuard() {
-        regions = new HashMap<>();
-    }
-
-
+    RegionManager regionManager = new RegionManager();
     public static void main(String[] args) {
-        Log.getLogger().info("InstanceGuard initiated...");
+        Log.getLogger().debug("InstanceGuard initiated...");
     }
 
-    public void getRegions(String worldName) {
-        regions.get(worldName);
-    }
-
-    public void createRegion(String worldName, Pos minLocation, Pos maxLocation) {
-        regions.put(worldName, new Region(minLocation, maxLocation));
-    }
-
-    public void removeRegion(String worldName) {
-        regions.remove(worldName);
+    public RegionManager getRegionManager() {
+        return regionManager;
     }
 }
