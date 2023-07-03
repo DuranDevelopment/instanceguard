@@ -1,10 +1,8 @@
 package cc.ddev.instanceguard.region;
 
-import cc.ddev.instanceguard.flag.DefaultFlag;
 import cc.ddev.instanceguard.flag.FlagValue;
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.entity.Player;
-import net.minestom.server.instance.Instance;
 
 import java.util.*;
 
@@ -13,7 +11,7 @@ public class Region {
     private final String instanceName;
     private final Pos minLocation;
     private final Pos maxLocation;
-    private final Map<DefaultFlag, FlagValue> flags;
+    private final Map<String, FlagValue<?>> flags;
     private final List<UUID> owners;
     private final List<UUID> members;
 
@@ -45,17 +43,16 @@ public class Region {
         return isXBetween && isYBetween && isZBetween;
     }
 
-    public void setFlag(DefaultFlag flag, FlagValue value) {
+    public void setFlag(String flag, FlagValue<?> value) {
         flags.put(flag, value);
     }
 
-    public boolean hasFlag(DefaultFlag flag) {
-        return flags.containsKey(flag);
+    public boolean hasFlag(String flagName) {
+        return flags.containsKey(flagName);
     }
-    public FlagValue getFlagValue(DefaultFlag flag) {
-        return flags.get(flag);
+    public FlagValue<?> getFlagValue(String flagName) {
+        return flags.get(flagName);
     }
-
     public void addOwner(Player player) {
         owners.add(player.getUuid());
     }

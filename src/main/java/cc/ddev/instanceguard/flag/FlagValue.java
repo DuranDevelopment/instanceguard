@@ -1,9 +1,17 @@
 package cc.ddev.instanceguard.flag;
 
-public enum FlagValue {
-    ALLOW,
-    DENY,
-    NON_MEMBERS,
-    MEMBERS,
-    OWNERS
+public class FlagValue<T> {
+    private T value;
+
+    public FlagValue(T value) {
+        this.value = value;
+    }
+
+    public T getValue() {
+        return value;
+    }
+
+    public void setValue(T value) {
+        this.value = value;
+    }
 }

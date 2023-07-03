@@ -27,16 +27,16 @@ public class PlayerBlockPlaceListener implements Listener {
 
         for (Region region : instanceGuard.getRegionManager().getRegions()) {
             if (region.containsLocation(new Pos(event.getBlockPosition()))) {
-                if (!region.hasFlag(DefaultFlag.BUILD)) return;
-                if (region.getFlagValue(DefaultFlag.BUILD) == FlagValue.ALLOW) {
-                    if (region.getFlagValue(DefaultFlag.BUILD_GROUP) == FlagValue.MEMBERS) {
+                if (!region.hasFlag(DefaultFlag.BUILD.getName())) return;
+                if (region.getFlagValue(DefaultFlag.BUILD.getName()).getValue().equals("allow")) {
+                    if (region.getFlagValue(DefaultFlag.BUILD_GROUP.getName()).getValue().equals("MEMBERS")) {
                         if (!region.isMember(player)) {
                             event.setCancelled(true);
                             player.sendMessage(ChatUtils.translateMiniMessage("<red>You cannot build here!"));
                             return;
                         }
                     }
-                    if (region.getFlagValue(DefaultFlag.BUILD_GROUP) == FlagValue.NON_MEMBERS) {
+                    if (region.getFlagValue(DefaultFlag.BUILD_GROUP.getName()).getValue().equals("NON_MEMBERS")) {
                         if (region.isMember(player)) {
                             event.setCancelled(true);
                             player.sendMessage(ChatUtils.translateMiniMessage("<red>You cannot build here!"));
@@ -45,14 +45,14 @@ public class PlayerBlockPlaceListener implements Listener {
                     }
                     return;
                 }
-                if (region.getFlagValue(DefaultFlag.BUILD) == FlagValue.DENY) {
-                    if (region.getFlagValue(DefaultFlag.BUILD_GROUP) == FlagValue.MEMBERS) {
+                if (region.getFlagValue(DefaultFlag.BUILD.getName()).getValue().equals("deny")) {
+                    if (region.getFlagValue(DefaultFlag.BUILD_GROUP.getName()).getValue().equals("MEMBERS")) {
                         if (region.isMember(player)) return;
                         event.setCancelled(true);
                         player.sendMessage(ChatUtils.translateMiniMessage("<red>You cannot build here!"));
                         return;
                     }
-                    if (region.getFlagValue(DefaultFlag.BUILD_GROUP) == FlagValue.NON_MEMBERS) {
+                    if (region.getFlagValue(DefaultFlag.BUILD_GROUP.getName()).getValue().equals("NON_MEMBERS")) {
                         if (!region.isMember(player)) return;
                         event.setCancelled(true);
                         player.sendMessage(ChatUtils.translateMiniMessage("<red>You cannot build here!"));
