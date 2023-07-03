@@ -64,6 +64,10 @@ public class Region {
         owners.remove(player.getUuid());
     }
 
+    public List<UUID> getOwners() {
+        return owners;
+    }
+
     public boolean isOwner(Player player) {
         return owners.contains(player.getUuid());
     }
@@ -74,6 +78,10 @@ public class Region {
 
     public void removeMember(Player player) {
         members.remove(player.getUuid());
+    }
+
+    public List<UUID> getMembers() {
+        return members;
     }
 
     public boolean isMember(Player player) {
