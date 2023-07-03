@@ -28,9 +28,21 @@ public class Region {
     }
 
     public boolean containsLocation(Pos location) {
-        return location.x() >= minLocation.x() && location.x() <= maxLocation.x()
-                && location.y() >= minLocation.y() && location.y() <= maxLocation.y()
-                && location.z() >= minLocation.z() && location.z() <= maxLocation.z();
+
+        // Check if the player's X coordinate is between location1 and location2
+        boolean isXBetween = (location.x() >= Math.min(maxLocation.x(), minLocation.x()))
+                && (location.x() <= Math.max(maxLocation.x(), minLocation.x()));
+
+        // Check if the player's Y coordinate is between location1 and location2
+        boolean isYBetween = (location.y() >= Math.min(maxLocation.y(), minLocation.y()))
+                && (location.y() <= Math.max(maxLocation.y(), minLocation.y()));
+
+        // Check if the player's Z coordinate is between location1 and location2
+        boolean isZBetween = (location.z() >= Math.min(maxLocation.z(), minLocation.z()))
+                && (location.z() <= Math.max(maxLocation.z(), minLocation.z()));
+
+        // Return true if the player is between both locations in all three axes
+        return isXBetween && isYBetween && isZBetween;
     }
 
     public void setFlag(DefaultFlag flag, FlagValue value) {
