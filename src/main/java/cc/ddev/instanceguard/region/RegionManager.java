@@ -1,6 +1,7 @@
 package cc.ddev.instanceguard.region;
 
 import cc.ddev.instanceguard.flag.DefaultFlag;
+import cc.ddev.instanceguard.flag.FlagValue;
 import net.minestom.server.coordinate.Pos;
 
 import java.util.ArrayList;
@@ -46,7 +47,7 @@ public class RegionManager {
         regions.remove(region);
     }
 
-    public void setFlag(String regionName, DefaultFlag flag, boolean value) {
+    public void setFlag(String regionName, DefaultFlag flag, FlagValue value) {
         Region region = getRegion(regionName);
         if (region != null) {
             region.setFlag(flag, value);

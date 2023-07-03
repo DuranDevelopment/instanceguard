@@ -1,6 +1,7 @@
 package cc.ddev.instanceguard.region;
 
 import cc.ddev.instanceguard.flag.DefaultFlag;
+import cc.ddev.instanceguard.flag.FlagValue;
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.entity.Player;
 import net.minestom.server.instance.Instance;
@@ -12,7 +13,7 @@ public class Region {
     private final String instanceName;
     private final Pos minLocation;
     private final Pos maxLocation;
-    private final Map<DefaultFlag, Boolean> flags;
+    private final Map<DefaultFlag, FlagValue> flags;
     private final List<UUID> owners;
     private final List<UUID> members;
 
@@ -32,12 +33,15 @@ public class Region {
                 && location.z() >= minLocation.z() && location.z() <= maxLocation.z();
     }
 
-    public void setFlag(DefaultFlag flag, boolean value) {
+    public void setFlag(DefaultFlag flag, FlagValue value) {
         flags.put(flag, value);
     }
 
     public boolean hasFlag(DefaultFlag flag) {
-        return flags.containsKey(flag) && flags.get(flag);
+        return flags.containsKey(flag);
+    }
+    public FlagValue getFlagValue(DefaultFlag flag) {
+        return flags.get(flag);
     }
 
     public void addOwner(Player player) {
@@ -66,6 +70,10 @@ public class Region {
 
     public String getName() {
         return name;
+    }
+
+    public String getInstanceName() {
+        return instanceName;
     }
 
     public Pos getMinLocation() {
