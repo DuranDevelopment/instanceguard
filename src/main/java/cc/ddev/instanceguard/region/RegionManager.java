@@ -18,9 +18,9 @@ public class RegionManager {
         return region;
     }
 
-    public Region getRegion(String regionName) {
+    public Region getRegion(String regionName, String instanceName) {
         for (Region region : regions) {
-            if (region.getName().equals(regionName)) {
+            if (region.getName().equals(regionName) && region.getInstanceName().equals(instanceName)) {
                 return region;
             }
         }
@@ -46,8 +46,8 @@ public class RegionManager {
         regions.remove(region);
     }
 
-    public void setFlag(String regionName, String flag, FlagValue<?> value) {
-        Region region = getRegion(regionName);
+    public void setFlag(String regionName, String instanceName, String flag, FlagValue<?> value) {
+        Region region = getRegion(regionName, instanceName);
         if (region != null) {
             region.setFlag(flag, value);
         }
