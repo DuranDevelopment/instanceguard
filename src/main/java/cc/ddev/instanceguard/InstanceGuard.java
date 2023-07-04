@@ -14,15 +14,15 @@ public class InstanceGuard {
         new PlayerBlockPlaceListener(this).register();
         // Register default flags
         flagManager.registerCustomFlag("build", "allow");
-        flagManager.registerCustomFlag("build_group", "members");
+        flagManager.registerCustomFlag("build_group", "MEMBERS");
         flagManager.registerCustomFlag("block_break", "allow");
-        flagManager.registerCustomFlag("block_break_group", "members");
+        flagManager.registerCustomFlag("block_break_group", "MEMBERS");
         flagManager.registerCustomFlag("block_place", "allow");
-        flagManager.registerCustomFlag("block_place_group", "members");
+        flagManager.registerCustomFlag("block_place_group", "MEMBERS");
         flagManager.registerCustomFlag("interact", "allow");
-        flagManager.registerCustomFlag("interact_group", "members");
+        flagManager.registerCustomFlag("interact_group", "MEMBERS");
         flagManager.registerCustomFlag("use", "allow");
-        flagManager.registerCustomFlag("use_group", "members");
+        flagManager.registerCustomFlag("use_group", "MEMBERS");
     }
     public RegionManager getRegionManager() {
         return regionManager;
