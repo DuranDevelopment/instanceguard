@@ -14,6 +14,8 @@ public class FlagManager {
         if (customFlags.containsKey(flagName)) {
             FlagValue<T> flagValue = (FlagValue<T>) customFlags.get(flagName);
             flagValue.setValue(value);
+        } else {
+            throw new IllegalArgumentException("Flag " + flagName + " does not exist!");
         }
     }
 }
