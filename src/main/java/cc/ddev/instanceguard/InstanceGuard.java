@@ -23,6 +23,10 @@ public class InstanceGuard {
         flagManager.registerCustomFlag("interact_group", "MEMBERS");
         flagManager.registerCustomFlag("use", "allow");
         flagManager.registerCustomFlag("use_group", "MEMBERS");
+        flagManager.registerCustomFlag("chest_access", "allow");
+        flagManager.registerCustomFlag("chest_access_group", "MEMBERS");
+        flagManager.registerCustomFlag("pvp", "allow");
+        flagManager.registerCustomFlag("pvp_group", "MEMBERS");
     }
     public RegionManager getRegionManager() {
         return regionManager;
