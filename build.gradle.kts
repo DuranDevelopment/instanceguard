@@ -23,7 +23,7 @@ repositories {
 
 dependencies {
     implementation("org.slf4j:slf4j-api:2.0.6")
-    implementation("com.github.Minestom:Minestom:954e8b3915")
+    implementation("com.github.Minestom:Minestom:c5047b8037")
     implementation("com.github.simplix-softworks:simplixstorage:3.2.6")
     implementation("net.kyori:adventure-text-minimessage:4.13.1")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
