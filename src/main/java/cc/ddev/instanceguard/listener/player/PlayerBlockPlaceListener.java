@@ -9,9 +9,15 @@ import cc.ddev.instanceguard.region.Region;
 import cc.ddev.instanceguard.utils.ChatUtils;
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.entity.Player;
+import net.minestom.server.event.EventFilter;
 import net.minestom.server.event.player.PlayerBlockPlaceEvent;
 
 public class PlayerBlockPlaceListener implements Listener {
+
+    @Override
+    public EventFilter<?, ?> getFilter() {
+        return EventFilter.PLAYER;
+    }
 
     private final InstanceGuard instanceGuard;
 

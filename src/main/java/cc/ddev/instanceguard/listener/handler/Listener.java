@@ -1,15 +1,18 @@
 package cc.ddev.instanceguard.listener.handler;
 
 import cc.ddev.instanceguard.logger.Log;
-import net.minestom.server.MinecraftServer;
 import net.minestom.server.event.Event;
+import net.minestom.server.event.EventFilter;
+import net.minestom.server.event.EventNode;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public interface Listener {
-    default void register() {
-        var eventHandler = MinecraftServer.getGlobalEventHandler();
+    EventFilter<?, ?> getFilter();
+    default EventNode<?> register() {
         var methods = this.getClass().getDeclaredMethods();
+        var node = EventNode.type("instanceguard-"+this.getClass().getSimpleName().toLowerCase(), getFilter());
 
         for (Method method : methods) {
             if (method.isAnnotationPresent(Listen.class)) {
@@ -22,7 +25,7 @@ public interface Listener {
                     if(Event.class.isAssignableFrom(eventToStickTo)) {
                         // Register the event
 
-                        eventHandler.addListener(eventToStickTo.asSubclass(Event.class), event -> {
+                        node.addListener(eventToStickTo.asSubclass(Event.class), event -> {
                             try {
                                 method.invoke(this, event);
                             } catch (IllegalAccessException | InvocationTargetException e) {
@@ -38,5 +41,6 @@ public interface Listener {
                 }
             }
         }
+        return node;
     }
 }
