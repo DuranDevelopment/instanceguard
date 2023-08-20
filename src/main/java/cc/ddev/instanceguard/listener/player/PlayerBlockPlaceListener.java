@@ -9,10 +9,11 @@ import cc.ddev.instanceguard.region.Region;
 import cc.ddev.instanceguard.utils.ChatUtils;
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.entity.Player;
+import net.minestom.server.event.EventFilter;
 import net.minestom.server.event.player.PlayerBlockPlaceEvent;
+import net.minestom.server.event.trait.PlayerEvent;
 
-public class PlayerBlockPlaceListener implements Listener {
-
+public class PlayerBlockPlaceListener implements Listener<PlayerEvent> {
     private final InstanceGuard instanceGuard;
 
     public PlayerBlockPlaceListener(InstanceGuard instanceGuard) {
@@ -63,5 +64,10 @@ public class PlayerBlockPlaceListener implements Listener {
     private void cancelEvent(PlayerBlockPlaceEvent event, Player player) {
         event.setCancelled(true);
         player.sendMessage(ChatUtils.translateMiniMessage("<red>You cannot build here!"));
+    }
+
+    @Override
+    public EventFilter<PlayerEvent, ?> getFilter() {
+        return EventFilter.PLAYER;
     }
 }
