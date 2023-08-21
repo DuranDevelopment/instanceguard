@@ -7,12 +7,12 @@ import cc.ddev.instanceguard.region.RegionManager;
 import net.minestom.server.event.Event;
 import net.minestom.server.event.EventNode;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class InstanceGuard {
     RegionManager regionManager = new RegionManager();
     FlagManager flagManager = new FlagManager();
-    List<EventNode<?>> events = List.of();
+    ArrayList<EventNode<?>> events = new ArrayList<>();
 
     public InstanceGuard() {
         Log.getLogger().info("InstanceGuard initiated...");
