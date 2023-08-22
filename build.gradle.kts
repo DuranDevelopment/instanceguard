@@ -1,10 +1,7 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
-
 plugins {
     java
     `maven-publish`
     signing
-    id("com.github.johnrengelman.shadow") version ("7.1.0")
     id("io.freefair.lombok") version "6.6.2"
 }
 
@@ -31,19 +28,6 @@ dependencies {
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.1")
 }
 
-tasks {
-    named<ShadowJar>("shadowJar") {
-        archiveBaseName.set("instanceguard")
-        archiveFileName.set("instanceguard-${project.version}.jar")
-        mergeServiceFiles()
-        manifest {
-            attributes(mapOf("Main-Class" to "cc.ddev.feather.Server", "Multi-Release" to "true"))
-        }
-
-        fun reloc(pkg: String) = relocate(pkg, "cc.ddev.shaded.$pkg")
-    }
-}
-
 publishing {
     repositories {
         maven {
@@ -64,12 +48,6 @@ publishing {
 
 tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
-}
-
-tasks {
-    build {
-        dependsOn(shadowJar)
-    }
 }
 
 tasks.getByName<Test>("test") {
