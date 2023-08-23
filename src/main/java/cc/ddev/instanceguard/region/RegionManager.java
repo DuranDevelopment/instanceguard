@@ -2,6 +2,7 @@ package cc.ddev.instanceguard.region;
 
 import cc.ddev.instanceguard.flag.FlagValue;
 import net.minestom.server.coordinate.Pos;
+import net.minestom.server.instance.Instance;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +19,9 @@ public class RegionManager {
         return region;
     }
 
-    public Region getRegion(String regionName, String instanceName) {
+    public Region getRegion(String regionName, Instance instance) {
         for (Region region : regions) {
-            if (region.getName().equals(regionName) && region.getInstanceName().equals(instanceName)) {
+            if (region.getName().equals(regionName) && region.getInstance() == instance) {
                 return region;
             }
         }
@@ -28,9 +29,9 @@ public class RegionManager {
         return null;
     }
 
-    public Region getRegion(Pos location) {
+    public Region getRegion(Pos location, Instance instance) {
         for (Region region : regions) {
-            if (region.containsLocation(location)) {
+            if (region.containsLocation(location) && region.getInstance() == instance) {
                 return region;
             }
         }
@@ -38,16 +39,20 @@ public class RegionManager {
         return null;
     }
 
-    public void createRegion(String regionName, String instanceName, Pos minLocation, Pos maxLocation) {
-        regions.add(new Region(regionName, instanceName, minLocation, maxLocation));
+    public void createRegion(String regionName, Instance instance, Pos minLocation, Pos maxLocation) {
+        regions.add(new Region(regionName, instance, minLocation, maxLocation));
     }
 
     public void removeRegion(Region region) {
         regions.remove(region);
     }
 
-    public void setFlag(String regionName, String instanceName, String flag, FlagValue<?> value) {
-        Region region = getRegion(regionName, instanceName);
+    public void setFlag(Region region, Instance instance, String flag, FlagValue<?> value) {
+        region.setFlag(flag, value);
+    }
+
+    public void setFlag(String regionName, Instance instance, String flag, FlagValue<?> value) {
+        Region region = getRegion(regionName, instance);
         if (region != null) {
             region.setFlag(flag, value);
         }

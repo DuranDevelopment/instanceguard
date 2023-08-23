@@ -3,26 +3,27 @@ package cc.ddev.instanceguard.region;
 import cc.ddev.instanceguard.flag.FlagValue;
 import net.minestom.server.coordinate.Pos;
 import net.minestom.server.entity.Player;
+import net.minestom.server.instance.Instance;
 
 import java.util.*;
 
 public class Region {
     private final String name;
-    private final String instanceName;
+    private final Instance instance;
     private final Pos minLocation;
     private final Pos maxLocation;
     private final Map<String, FlagValue<?>> flags;
     private final List<UUID> owners;
     private final List<UUID> members;
 
-    public Region(String name, String instanceName, Pos minLocation, Pos maxLocation) {
+    public Region(String name, Instance instance, Pos minLocation, Pos maxLocation) {
         this.name = name;
         this.minLocation = minLocation;
         this.maxLocation = maxLocation;
         this.flags = new HashMap<>();
         this.members = new ArrayList<>();
         this.owners = new ArrayList<>();
-        this.instanceName = instanceName;
+        this.instance = instance;
     }
 
     public boolean containsLocation(Pos location) {
@@ -89,8 +90,8 @@ public class Region {
         return name;
     }
 
-    public String getInstanceName() {
-        return instanceName;
+    public Instance getInstance() {
+        return instance;
     }
 
     public Pos getMinLocation() {
