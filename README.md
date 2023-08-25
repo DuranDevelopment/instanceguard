@@ -7,6 +7,9 @@
 
 A Minestom clone of WorldGuard
 
+# Usage
+Check out our official [wiki](https://wikiig.ddev.cc/).
+
 # Credits
 * The [contributors](https://github.com/DuranDevelopment/instanceguard/graphs/contributors) of the project
 * [LearnSpigot](https://learnspigot.com) for their infinite support and knowledge
