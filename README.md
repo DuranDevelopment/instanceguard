@@ -3,5 +3,16 @@
 
 > **Warning** - This project is a work in progress, we do not recommend using it in production.  
 > Until a stable release is made, the codebase is subject to major/breaking changes without warning.
-> 
-InstanceGuard is specifically made for [Feather](https://github.com/DuranDevelopment/Feather) but can be used for other purposes.
+
+
+A Minestom clone of WorldGuard
+
+# Credits
+* The [contributors](https://github.com/DuranDevelopment/instanceguard/graphs/contributors) of the project
+* [LearnSpigot](https://learnspigot.com) for their infinite support and knowledge
+
+# Other projects
+* [Feather](https://github.com/DuranDevelopment/Feather) - A lightweight Minestom implementation for Minetopia servers
+
+# License
+This project is licensed under the [Apache License Version 2.0](LICENSE).
