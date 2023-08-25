@@ -23,7 +23,6 @@ public class PlayerBlockPlaceListener implements Listener<PlayerEvent> {
 
     @Listen
     public void onPlayerBlockPlace(PlayerBlockPlaceEvent event) {
-        System.out.println("PlayerBlockPlaceEvent");
         Player player = event.getPlayer();
         if (player.getInstance() == null) return;
 
