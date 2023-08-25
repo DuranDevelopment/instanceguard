@@ -16,6 +16,7 @@ Check out our official [wiki](https://wikiig.ddev.cc/).
 
 # Other projects
 * [Feather](https://github.com/DuranDevelopment/Feather) - A lightweight Minestom implementation for Minetopia servers
+* [StomEdit](https://github.com/BedCrabDev/StomEdit) - A FAWE-like Minestom implementation
 
 # License
 This project is licensed under the [Apache License Version 2.0](LICENSE).

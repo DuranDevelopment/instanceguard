@@ -5,21 +5,22 @@ import cc.ddev.instanceguard.flag.FlagManager;
 import cc.ddev.instanceguard.listener.player.PlayerBlockPlaceListener;
 import cc.ddev.instanceguard.logger.Log;
 import cc.ddev.instanceguard.region.RegionManager;
+import net.minestom.server.MinecraftServer;
 import net.minestom.server.event.Event;
 import net.minestom.server.event.EventNode;
 
 import java.util.ArrayList;
 
 public class InstanceGuard {
-
-    public static InstanceGuard instance = new InstanceGuard();
     RegionManager regionManager = new RegionManager();
     FlagManager flagManager = new FlagManager();
     ArrayList<EventNode<?>> events = new ArrayList<>();
-
+    EventNode<Event> rootNode = MinecraftServer.getGlobalEventHandler();
     public InstanceGuard() {
         Log.getLogger().info("InstanceGuard initiated...");
         events.add(new PlayerBlockPlaceListener(this).register());
+        enable(rootNode);
+
         // Register default flags
         flagManager.registerCustomFlag("build", DefaultFlagValue.ALLOW.getValue());
         flagManager.registerCustomFlag("build_group", DefaultFlagValue.MEMBERS.getValue());
@@ -47,7 +48,4 @@ public class InstanceGuard {
         return flagManager;
     }
 
-    public static InstanceGuard getInstance() {
-        return instance;
-    }
 }
