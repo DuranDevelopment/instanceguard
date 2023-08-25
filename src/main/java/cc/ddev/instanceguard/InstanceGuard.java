@@ -11,6 +11,8 @@ import net.minestom.server.event.EventNode;
 import java.util.ArrayList;
 
 public class InstanceGuard {
+
+    public static InstanceGuard instance = new InstanceGuard();
     RegionManager regionManager = new RegionManager();
     FlagManager flagManager = new FlagManager();
     ArrayList<EventNode<?>> events = new ArrayList<>();
@@ -45,7 +47,7 @@ public class InstanceGuard {
         return flagManager;
     }
 
-    public InstanceGuard getInstance() {
-        return this;
+    public static InstanceGuard getInstance() {
+        return instance;
     }
 }
