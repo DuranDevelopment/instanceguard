@@ -15,11 +15,9 @@ public class InstanceGuard {
     RegionManager regionManager = new RegionManager();
     FlagManager flagManager = new FlagManager();
     ArrayList<EventNode<?>> events = new ArrayList<>();
-    EventNode<Event> rootNode = MinecraftServer.getGlobalEventHandler();
     public InstanceGuard() {
         Log.getLogger().info("InstanceGuard initiated...");
         events.add(new PlayerBlockPlaceListener(this).register());
-        enable(rootNode);
 
         // Register default flags
         flagManager.registerCustomFlag("build", DefaultFlagValue.ALLOW.getValue());
