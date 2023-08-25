@@ -44,4 +44,8 @@ public class InstanceGuard {
     public FlagManager getFlagManager() {
         return flagManager;
     }
+
+    public InstanceGuard getInstance() {
+        return this;
+    }
 }
