@@ -11,9 +11,10 @@ import java.lang.reflect.Method;
 
 public interface Listener<T extends Event> {
     EventFilter<T, ?> getFilter();
+
     default EventNode<?> register() {
         var methods = this.getClass().getDeclaredMethods();
-        var node = EventNode.type("instanceguard-"+this.getClass().getSimpleName().toLowerCase(), getFilter());
+        var node = EventNode.type("instanceguard-" + this.getClass().getSimpleName().toLowerCase(), getFilter());
 
         for (Method method : methods) {
             if (!method.isAnnotationPresent(Listen.class)) continue;
@@ -23,20 +24,18 @@ public interface Listener<T extends Event> {
             }
             Class<?> eventToStickTo = paramTypes[0];
             // Check if the event is a subclass of Event
-            if (!getFilter().eventType().isAssignableFrom(eventToStickTo)){
-                throw new IllegalArgumentException("Method `"+method.getName()+"`'s 1st parameter is not assignable to type `"+getFilter().eventType().getSimpleName()+"`!");
+            if (!getFilter().eventType().isAssignableFrom(eventToStickTo)) {
+                throw new IllegalArgumentException("Method `" + method.getName() + "`'s 1st parameter is not assignable to type `" + getFilter().eventType().getSimpleName() + "`!");
             }
-            if(getFilter().getClass().isAssignableFrom(eventToStickTo)) {
-                // code intellisense yells here but the code does check if the event is (assignable to) Class<T>
-                node.addListener((Class<T>) eventToStickTo, (event) -> {
-                    try {
-                        method.invoke(this, event);
-                    } catch (IllegalAccessException | InvocationTargetException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
-                Log.getLogger().debug("Registered listener for event " + eventToStickTo.getSimpleName() + " to node "+node.getName());
-            }
+            // code intellisense yells here but the code does check if the event is (assignable to) Class<T>
+            node.addListener((Class<T>) eventToStickTo, (event) -> {
+                try {
+                    method.invoke(this, event);
+                } catch (IllegalAccessException | InvocationTargetException e) {
+                    throw new RuntimeException(e);
+                }
+            });
+            Log.getLogger().debug("Registered listener for event " + eventToStickTo.getSimpleName() + " to node " + node.getName());
         }
         return node;
     }
