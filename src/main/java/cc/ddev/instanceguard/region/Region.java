@@ -45,9 +45,9 @@ public class Region {
     }
 
     public void setFlag(String flag, FlagValue<?> value) {
+        flags.remove(flag);
         flags.put(flag, value);
     }
-
     public boolean hasFlag(String flagName) {
         return flags.containsKey(flagName);
     }
@@ -57,47 +57,36 @@ public class Region {
     public void addOwner(Player player) {
         owners.add(player.getUuid());
     }
-
     public void removeOwner(Player player) {
         owners.remove(player.getUuid());
     }
-
     public List<UUID> getOwners() {
         return owners;
     }
-
     public boolean isOwner(Player player) {
         return owners.contains(player.getUuid());
     }
-
     public void addMember(Player player) {
         members.add(player.getUuid());
     }
-
     public void removeMember(Player player) {
         members.remove(player.getUuid());
     }
-
     public List<UUID> getMembers() {
         return members;
     }
-
     public boolean isMember(Player player) {
         return members.contains(player.getUuid());
     }
-
     public String getName() {
         return name;
     }
-
     public Instance getInstance() {
         return instance;
     }
-
     public Pos getMinLocation() {
         return minLocation;
     }
-
     public Pos getMaxLocation() {
         return maxLocation;
     }
